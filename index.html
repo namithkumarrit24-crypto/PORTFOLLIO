@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NAMITH's Portfolio</title>
+  <meta name="description" content="Simple responsive personal portfolio" />
+
+  <style>
+    /* --- Basic reset & layout --- */
+    :root{
+      --bg:#f7f7fb;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent:#4f46e5;
+      --maxw:1000px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      color:#111827;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      padding:24px;
+      display:flex;
+      justify-content:center;
+    }
+    .container{
+      width:100%;
+      max-width:var(--maxw);
+    }
+
+    /* --- Header / Nav --- */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:22px;
+    }
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      text-decoration:none;
+      color:inherit;
+    }
+    .logo{
+      width:46px;height:46px;border-radius:10px;
+      display:inline-grid;place-items:center;
+      background:linear-gradient(135deg,var(--accent),#06b6d4);
+      color:white;font-weight:700;
+      font-size:16px;
+    }
+    nav{display:flex;gap:14px;align-items:center}
+    nav a{
+      text-decoration:none;color:var(--muted);font-weight:600;font-size:14px;
+      padding:8px;border-radius:8px;
+    }
+    nav a:hover{background:rgba(0,0,0,0.03);color:#111}
+
+    /* mobile menu toggle */
+    .menu-btn{display:none;border:0;background:transparent;font-size:22px}
+
+    /* --- Hero --- */
+    .hero{
+      background:linear-gradient(180deg,rgba(255,255,255,0.6),transparent);
+      padding:20px;border-radius:12px;
+      display:flex;flex-direction:column;gap:12px;
+      background-color:var(--card);
+      box-shadow:0 6px 18px rgba(12,18,37,0.06);
+    }
+    .hero-row{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+    .intro{
+      flex:1;
+      min-width:220px;
+    }
+    .intro h1{margin:0;font-size:22px}
+    .intro p{margin:8px 0 0;color:var(--muted)}
+    .hero-photo{
+      width:96px;height:96px;border-radius:12px;background:linear-gradient(135deg,#fde68a,#fb7185);
+      display:inline-grid;place-items:center;color:white;font-weight:700;
+      font-size:18px;
+      flex-shrink:0;
+    }
+    .cta{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+    .btn{padding:8px 12px;border-radius:8px;border:0;cursor:pointer;font-weight:600}
+    .btn-primary{background:var(--accent);color:white}
+    .btn-outline{background:transparent;border:1px solid rgba(0,0,0,0.06);color:var(--muted)}
+
+    /* --- Content grid --- */
+    .grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:18px}
+    .card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(12,18,37,0.04)}
+    .section-title{font-size:16px;margin:0 0 10px 0}
+
+    /* Projects */
+    .projects{display:grid;grid-template-columns:1fr;gap:12px}
+    .proj{padding:12px;border-radius:8px;border:1px solid rgba(0,0,0,0.03);background:linear-gradient(180deg,rgba(0,0,0,0.01),transparent)}
+    .proj h4{margin:0 0 6px 0}
+    .tags{margin-top:8px;font-size:13px;color:var(--muted)}
+
+    /* Contact form (non-functional) */
+    form{display:flex;flex-direction:column;gap:8px}
+    input,textarea{padding:8px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);font-family:inherit}
+    textarea{min-height:90px;resize:vertical}
+    .small{font-size:13px;color:var(--muted)}
+
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* --- Responsive: from medium screens up --- */
+    @media (min-width:720px){
+      .grid{grid-template-columns:2fr 1fr}
+      nav{gap:18px}
+      .projects{grid-template-columns:1fr 1fr}
+      .hero{flex-direction:row;align-items:center}
+      .hero .intro{min-width:0}
+    }
+    @media (min-width:980px){
+      .menu-btn{display:none}
+    }
+
+    /* show menu-btn on narrow screens */
+    @media (max-width:719px){
+      nav{display:none}
+      .menu-btn{display:inline-block}
+    }
+
+    /* simple mobile menu panel */
+    .mobile-menu{
+      display:none;
+      margin-top:10px;
+      background:var(--card);
+      padding:12px;border-radius:10px;
+      box-shadow:0 6px 18px rgba(12,18,37,0.06);
+    }
+    .mobile-menu a{display:block;padding:8px 0;border-bottom:1px solid rgba(0,0,0,0.03);color:var(--muted);text-decoration:none}
+    .mobile-menu a:last-child{border-bottom:0}
+    .mobile-menu.show{display:block}
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <a class="brand" href="#">
+        <div class="logo">N</div>
+        <div>
+          <div style="font-weight:700">NAMITH</div>
+          <div style="font-size:12px;color:var(--muted)">Frontend • UI • Designer</div>
+        </div>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <!-- Mobile menu button -->
+      <button class="menu-btn" id="menuToggle" aria-label="Open menu">☰</button>
+    </header>
+
+    <!-- Mobile nav panel -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero card" aria-labelledby="introTitle">
+      <div class="hero-row">
+        <div class="hero-photo" aria-hidden="true">N</div>
+        <div class="intro">
+          <h1 id="introTitle">Hi — NAMITH </h1>
+          <p class="small">I build simple, accessible, and responsive websites. I focus on clean UI and fast performance.</p>
+
+          <div class="cta">
+            <a class="btn btn-primary" href="#contact">Hire me</a>
+            <a class="btn btn-outline" href="#projects">See projects</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main content -->
+    <main class="grid">
+      <!-- Left column -->
+      <div>
+        <section id="about" class="card" aria-labelledby="aboutTitle">
+          <h2 id="aboutTitle" class="section-title">About me</h2>
+          <p class="small">Short intro about yourself. Example: I'm a front-end developer who loves building clean UIs, good accessibility, and small delightful animations.</p>
+          <p class="small" style="margin-top:8px"><strong>Skills:</strong> HTML • CSS • UI Designer •UX Designer • Responsive Design</p>
+        </section>
+
+        <section id="projects" style="margin-top:12px">
+          <h2 class="section-title">Projects</h2>
+          <div class="projects">
+            <article class="proj" aria-labelledby="p1">
+              <h4 id="p1">Portfolio Template</h4>
+              <div class="small">A minimal responsive portfolio template. Built with plain HTML & CSS.</div>
+              <div class="tags">HTML • CSS</div>
+            </article>
+
+            <article class="proj" aria-labelledby="p2">
+              <h4 id="p2">Design System</h4>
+              <div class="small">Simple component library and style guide for consistent UI.</div>
+              <div class="tags">Design • Components</div>
+            </article>
+
+            <article class="proj" aria-labelledby="p3">
+              <h4 id="p3">Blog</h4>
+              <div class="small">Fast static blog with attention to typography and readability.</div>
+              <div class="tags">Static Site</div>
+            </article>
+
+            <article class="proj" aria-labelledby="p4">
+              <h4 id="p4">Music UI</h4>
+              <div class="small">A static music player UI using CSS animations (no audio).</div>
+              <div class="tags">UI • CSS</div>
+            </article>
+          </div>
+        </section>
+      </div>
+
+      <!-- Right column -->
+      <aside>
+        <section class="card" aria-labelledby="contactTitle">
+          <h2 id="contactTitle" class="section-title">Contact</h2>
+          <p class="small">Want to work together? Send a quick message.</p>
+
+          <!-- Non-functional demo form -->
+          <form onsubmit="event.preventDefault(); alert('This is a demo form — wire it up to a service to send messages.');">
+            <input type="text" name="name" placeholder="Your name" required />
+            <input type="email" name="email" placeholder="Email" required />
+            <textarea name="message" placeholder="Tell me about the project" required></textarea>
+            <button class="btn btn-primary" type="submit">Send</button>
+          </form>
+
+          <div style="margin-top:10px" class="small">Or email: <a href="mailto:you@example.com">you@example.com</a></div>
+        </section>
+
+        <section class="card" style="margin-top:12px">
+          <h3 class="section-title">Quick info</h3>
+          <p class="small"><strong>Location:</strong> Erode</p>
+          <p class="small"><strong>Availability:</strong> Open to work</p>
+        </section>
+      </aside>
+    </main>
+
+    <footer>
+      <div class="small">©️ <span id="yr"></span> NAMITH — Built with plain HTML & CSS</div>
+    </footer>
+  </div>
+
+  <script>
+    // Mobile menu toggle (tiny, optional JS)
+    const btn = document.getElementById('menuToggle');
+    const menu = document.getElementById('mobileMenu');
+    btn && btn.addEventListener('click', () => {
+      const shown = menu.classList.toggle('show');
+      menu.setAttribute('aria-hidden', !shown);
+      btn.textContent = shown ? '✕' : '☰';
+    });
+
+    // Set footer year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
